@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://billy.dk/schemas#model",
+  "title": "model",
+  "type": "object",
+  "properties": {
+    "requiredString": {
+      "type": "string"
+    },
+    "optionalString": {
+      "type": "string"
+    },
+    "optionalEnum": {
+      "type": "string",
+      "enum": ["val1", "val2"]
+    }
+  },
+  "required": ["requiredString"],
+  "additionalProperties": false
+}
