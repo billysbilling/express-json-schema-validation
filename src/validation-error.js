@@ -1,10 +1,10 @@
 export default class ValidationError extends Error {
-  constructor (message, errors) {
+  constructor (pointer, message) {
     super()
     Error.captureStackTrace(this, this.constructor)
     this.name = 'ValidationError'
     this.code = 'EVALIDATION'
     this.message = message
-    this.errors = errors
+    this.pointer = pointer
   }
 }

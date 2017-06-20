@@ -20,10 +20,10 @@ describe('validation-middleware', () => {
   })
 
   it('validation error calls next(err)', async () => {
-    const error = await testValidate({
+    const errors = await testValidate({
       optionalString: 'o'
     })
-
-    expect(error, 'to be a', ValidationError)
+    expect(errors.length, 'to equal', 1)
+    expect(errors[0], 'to be a', ValidationError)
   })
 })

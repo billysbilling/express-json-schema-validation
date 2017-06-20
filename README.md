@@ -38,20 +38,17 @@ router.post('/models', validate('model'), ModelController.get)
 Handle validation errors in express error handler:
 
 ```
-function handleError (err, req, res, next) {
-  switch(err.code) {
-    'EVALIDATION':
-      res.status(422).json(err)
-  }
+function handleErrors (errors, req, res, next) {
+  res.status(422).json(errors)
 }
 ```
 
 Validate errors:
 ```
 const validator = new Validator({ model })
-const error = validator.validate('model', object)
-if (error) {
-  // ValidationError
+const errors = validator.validate('model', object)
+if (errors) {
+  // ValidationErrors
 }
 ```
 
@@ -59,9 +56,7 @@ Error format:
 ```
 ValidationError({
   code: 'EVALIDATION',
-  errors: [{
-    pointer: '/id' // invalid property pointer,
-    message: 'validation error' // validation message
-  }]
+  pointer: '/id' // invalid property pointer,
+  message: 'validation error' // validation message
 })
 ```
