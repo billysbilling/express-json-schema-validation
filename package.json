@@ -1,0 +1,44 @@
+{
+  "name": "express-json-schema-validation",
+  "version": "0.1.0",
+  "description": "Express JSON Schema validation middleware",
+  "main": "build/index.js",
+  "scripts": {
+    "pretest": "npm run lint",
+    "lint": "eslint .",
+    "test": "mocha",
+    "clean": "rm -rf build/",
+    "prebuild": "npm run clean",
+    "build": "babel src --out-dir build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/billysbilling/express-json-schema-validation.git"
+  },
+  "author": "Filip Fiolka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/billysbilling/express-json-schema-validation/issues"
+  },
+  "homepage": "https://github.com/billysbilling/express-json-schema-validation#readme",
+  "dependencies": {
+    "ajv": "^5.2.0",
+    "lodash": "^4.17.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^2.3.1",
+    "mocha": "^3.4.2",
+    "unexpected": "^10.29.0"
+  }
+}
