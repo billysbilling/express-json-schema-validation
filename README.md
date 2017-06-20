@@ -32,7 +32,7 @@ import Validator from 'express-json-schema-validation'
 
 const validate = new Validator({ model })
 const router = new Router()
-router.get('/models', validate('model'), ModelController.get)
+router.post('/models', validate('model'), ModelController.get)
 ```
 
 Handle validation errors in express error handler:
@@ -50,7 +50,9 @@ Error format:
 ```
 {
   code: 'EVALIDATION',
-  pointer: '/id' // invalid property pointer,
-  message: 'validation error' // validation message
+  errors: [{
+    pointer: '/id' // invalid property pointer,
+    message: 'validation error' // validation message
+  }]
 }
 ```
