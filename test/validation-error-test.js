@@ -3,7 +3,7 @@ import ValidationError from '../src/validation-error'
 describe('validation-error', () => {
   let error
   before(() => {
-    error = new ValidationError('message', [{ a: 1 }])
+    error = new ValidationError('/a', 'message')
   })
 
   it('creates an instance', () => {
@@ -18,8 +18,8 @@ describe('validation-error', () => {
     expect(error.code, 'to equal', 'EVALIDATION')
   })
 
-  it('has validation errors', () => {
-    expect(error.errors, 'to equal', [{ a: 1 }])
+  it('has pointer property', () => {
+    expect(error.pointer, 'to equal', '/a')
   })
 
   it('serializes to JSON', () => {
@@ -27,9 +27,7 @@ describe('validation-error', () => {
       name: 'ValidationError',
       code: 'EVALIDATION',
       message: 'message',
-      errors: [{
-        'a': 1
-      }]
+      pointer: '/a'
     }))
   })
 })

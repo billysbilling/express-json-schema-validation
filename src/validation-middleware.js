@@ -5,9 +5,9 @@ export default function ValidationMiddleware (schemas) {
 
   return schema =>
     (req, res, next) => {
-      const error = validator.validate(schema, req.body)
-      if (error) {
-        return next(error)
+      const errors = validator.validate(schema, req.body)
+      if (errors) {
+        return next(errors)
       }
       next()
     }

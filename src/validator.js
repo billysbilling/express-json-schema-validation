@@ -2,7 +2,7 @@ import _ from 'lodash'
 import Ajv from 'ajv'
 import ValidationError from './validation-error'
 
-function getErrorMessage (err) {
+function getErrorData (err) {
   switch (err.keyword) {
     case 'required':
       return {
@@ -31,6 +31,11 @@ function getErrorMessage (err) {
   }
 }
 
+function getError (err) {
+  err = getErrorData(err)
+  return new ValidationError(err.pointer, err.message)
+}
+
 export default class Validator {
   constructor (schemas) {
     this.ajv = new Ajv({ allErrors: true })
@@ -43,7 +48,6 @@ export default class Validator {
       return
     }
 
-    const errors = _.map(this.ajv.errors, getErrorMessage)
-    return new ValidationError('Validation error', errors)
+    return _.map(this.ajv.errors, getError)
   }
 }

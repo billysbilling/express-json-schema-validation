@@ -19,20 +19,14 @@ describe('validator', () => {
     const errors = validator.validate('model', {
       optionalString: 'o'
     })
-    expect(errors, 'to equal', new ValidationError('Validation error', [{
-      pointer: '/requiredString',
-      message: 'should have required property \'requiredString\''
-    }]))
+    expect(errors, 'to equal', [ new ValidationError('/requiredString', 'should have required property \'requiredString\'') ])
   })
 
   it('validates property types', async() => {
     const errors = validator.validate('model', {
       requiredString: 10
     })
-    expect(errors, 'to equal', new ValidationError('Validation error', [{
-      pointer: '/requiredString',
-      message: 'should be string'
-    }]))
+    expect(errors, 'to equal', [ new ValidationError('/requiredString', 'should be string') ])
   })
 
   it('validates enum properties', async() => {
@@ -40,10 +34,7 @@ describe('validator', () => {
       requiredString: 'r',
       optionalEnum: 'invalid'
     })
-    expect(error, 'to equal', new ValidationError('Validation error', [{
-      pointer: '/optionalEnum',
-      message: 'should be equal to one of the allowed values [val1,val2]'
-    }]))
+    expect(error, 'to equal', [ new ValidationError('/optionalEnum', 'should be equal to one of the allowed values [val1,val2]') ])
   })
 
   it('validates additional properties', async() => {
@@ -51,10 +42,7 @@ describe('validator', () => {
       requiredString: 'r',
       extraProperty: 'invalid'
     })
-    expect(error, 'to equal', new ValidationError('Validation error', [{
-      pointer: '/extraProperty',
-      message: 'should NOT have additional properties'
-    }]))
+    expect(error, 'to equal', [ new ValidationError('/extraProperty', 'should NOT have additional properties') ])
   })
 
   it('returns multiple errors', async() => {
@@ -62,12 +50,9 @@ describe('validator', () => {
       requiredString: 11,
       optionalString: 10
     })
-    expect(errors, 'to equal', new ValidationError('Validation error', [{
-      pointer: '/requiredString',
-      message: 'should be string'
-    }, {
-      pointer: '/optionalString',
-      message: 'should be string'
-    }]))
+    expect(errors, 'to equal', [
+      new ValidationError('/requiredString', 'should be string'),
+      new ValidationError('/optionalString', 'should be string')
+    ])
   })
 })
