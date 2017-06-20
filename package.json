@@ -1,6 +1,6 @@
 {
   "name": "express-json-schema-validation",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Express JSON Schema validation middleware",
   "main": "build/index.js",
   "scripts": {
