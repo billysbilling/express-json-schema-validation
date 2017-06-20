@@ -2,11 +2,14 @@
   "name": "express-json-schema-validation",
   "version": "0.1.0",
   "description": "Express JSON Schema validation middleware",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "pretest": "npm run lint",
     "lint": "eslint .",
-    "test": "mocha"
+    "test": "mocha",
+    "clean": "rm -rf build/",
+    "prebuild": "npm run clean",
+    "build": "babel src --out-dir build"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,7 @@
     "lodash": "^4.17.4"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-polyfill": "^6.23.0",
